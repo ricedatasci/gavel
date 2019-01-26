@@ -234,5 +234,8 @@ def email_invite_links(annotators):
         raw_body = settings.EMAIL_BODY.format(name=annotator.name, link=link)
         body = '\n\n'.join(utils.get_paragraphs(raw_body))
         emails.append((annotator.email, settings.EMAIL_SUBJECT, body))
-
-    utils.send_emails.delay(emails)
+        
+    if settings.USE_SENDGRID and settings.SENDGRID_API_KEY != None:
+        utils.send_sendgrid_emails(emails)
+    else:
+        utils.send_emails.delay(emails)
