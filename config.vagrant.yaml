@@ -8,6 +8,3 @@ email_from: '' # needs to be set to something even though email is disabled
 email_user: ''
 email_password: ''
 send_stats: false # disabled for development
-use_sendgrid: true
-sendgrid_api_key: "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"
-
